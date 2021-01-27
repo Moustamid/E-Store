@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import {
   Row,
@@ -10,10 +11,30 @@ import {
   Form,
 } from "react-bootstrap";
 import Rating from "../components/Rating";
-import products from "../products";
+//! moving the Products.json file to the backend :
+// import products from "../products";
 
-const ProductScreen = ({ history, match }) => {
-  const product = products.find((p) => p._id === match.params.id);
+const ProductScreen = ({ match }) => {
+  //! Defining products as a global state for now ...
+  const [product, setProduct] = useState({});
+
+  //! usinf to make a request to our backend as soon as our component loads ...
+
+  useEffect(() => {
+    // effect :
+    const fetchProduct = async () => {
+      const res = await axios.get(`/api/products/${match.params.id}`);
+      setProduct(res.data.data.product);
+      console.log("res :>> ", res);
+    };
+
+    fetchProduct();
+    return () => {
+      // cleanup
+    };
+  }, []);
+
+  // const product = products.find((p) => p._id === match.params.id);
 
   console.log(match.params.id);
   return (
