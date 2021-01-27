@@ -81,5 +81,7 @@ const products = [
 
 //! this is ES6 modules ... our express server dones hundele this yet 😁 i will config this later
 // export default products;
-//*we use isted comming js syntax :
-module.exports = products;
+//*we use isted of comming js syntax :
+// module.exports = products;
+
+export default products;
