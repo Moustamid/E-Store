@@ -1,18 +1,21 @@
+//-npm :
 import express from 'express';
 import dotenv from 'dotenv';
 import chalk from 'chalk';
+//- locol :
 import connectDB from './config/db.js';
 import products from './data/products.js';
 
-//-Envirement variables Setup :
+// SECTION:  Envirement variables Setup :
 dotenv.config();
 
-//-Mongoose DB Connection :
+// SECTION: Mongoose DB Connection :
 
 connectDB();
 
 const app = express();
 
+// SECTION:
 //!Routes hundlers :
 
 app.get('/', (req, res) => {
@@ -42,7 +45,7 @@ app.get('/api/products/:id', (req, res) => {
   });
 });
 
-//- Starting express server :
+// SECTION:  Starting express server :
 const PORT = process.env.PORT || 5000;
 app.listen(
   PORT,
