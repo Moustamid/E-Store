@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 import chalk from 'chalk';
 //- locol :
 import connectDB from './config/db.js';
-import products from './data/products.js';
+import productRoutes from './routes/productRoutes.js';
 
 // SECTION:  Envirement variables Setup :
 dotenv.config();
@@ -18,31 +18,10 @@ const app = express();
 // SECTION:
 //!Routes hundlers :
 
+app.use('/api/products', productRoutes);
+
 app.get('/', (req, res) => {
   res.send('hello from the server ... Node API is Running');
-});
-
-app.get('/api/products', (req, res) => {
-  res.status(200).json({
-    status: 'success',
-    requestedAt: req.requestTime,
-    data: {
-      products: products,
-    },
-  });
-});
-
-app.get('/api/products/:id', (req, res) => {
-  const id = req.params.id;
-  const product = products.find((p) => p._id === id);
-
-  res.status(200).json({
-    status: 'success',
-    requestedAt: req.requestTime,
-    data: {
-      product,
-    },
-  });
 });
 
 // SECTION:  Starting express server :
