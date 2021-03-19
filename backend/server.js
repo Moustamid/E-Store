@@ -20,7 +20,7 @@ const app = express();
 //!Routes hundlers :
 
 app.get('/', (req, res) => {
-  res.send('hello from the server ... Node API is Running');
+  res.send(`<h2>Express Server running on port ${PORT} ...👩‍💻</h2>`);
 });
 
 app.use('/api/products', productRoutes);
